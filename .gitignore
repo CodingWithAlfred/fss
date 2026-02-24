@@ -1,6 +1,3 @@
-# Generated output — rebuilt by CI on every push
-public/
-
 # Python
 __pycache__/
 *.pyc

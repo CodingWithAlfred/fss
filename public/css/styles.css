@@ -1,0 +1,527 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+}
+:root {
+	--base: #555;
+	--base-100: #f1f1f1;
+	--base-400: #555;
+	--base-800: #000;
+	--yellow: #ffda4b;
+	--yellow-100: #fffbe6;
+	--yellow-400: #ffda4b;
+	--yellow-800: #8b6f00;
+	--blue: #0a61ae;
+	--blue-100: #e2f8ff;
+	--blue-400: #61dafb;
+	--blue-800: #0a61ae;
+    --green: #008000; /* A standard green - adjust as needed */
+	--green-100: #e6ffe6; /* A very light green */
+	--green-400: #90ee90; /* A light green */
+	--green-800: #004f00; /* A darker green */
+}
+
+body {
+	font-family: "Open Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-size: 20px;
+	padding-bottom:50px;
+	min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+    -webkit-font-smoothing: antialiased; /* Improves font rendering on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Improves font rendering on macOS */
+}
+/* Announcement Bar Styles */
+.announcement-bar {
+	background-color: var(--yellow);
+	/* Yellow background */
+	color: var(--base-800);
+	/* Black text */
+	font-size: 22px;
+	font-weight: 800;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	position: relative;
+}
+.announcement-bar p {
+	display: inline-block;
+	animation: scrollText 15s linear infinite;
+}
+a {
+	text-decoration: none;
+	color: var(--blue);
+	
+}
+header {
+	padding-top:10px;
+	padding-bottom:10px;
+	display:flex;
+	justify-content:space-between;
+	max-width:1440px;
+	margin:auto;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+
+	.logo-holder {
+		display:flex;
+		padding:10px;
+		align-items:center;
+		font-weight:600;
+		color: var(--base-800);
+		
+		.logo {
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			font-size:32px;
+			background-color: var(--base-800);
+			color: var(--base-100);
+			height:100px;
+			width:100px;
+			margin-right:20px;
+			border-radius:50%;
+		}
+		.logo-text {
+			flex:1;            
+		}
+	}
+	nav {
+		display:flex;
+		align-items:center;
+		ul {
+			display:flex;
+			list-style-type: none;
+			gap:5px;
+			li {
+				display:inline-block;
+				a {
+					display:inline-block;
+					padding:10px 20px;
+					color:var(--base);
+					&:hover {
+						background-color: var(--base-100);
+						border-radius:10px;
+						text-decoration:none;
+					}
+				}
+			}
+		}
+		.mobile-toggle {
+			display:none;
+			color:var(--base-800);
+			padding:10px;
+			@media (max-width:768px){
+				display:inline-block;
+				position:absolute;
+				top:20px;
+				right:20px;
+			}
+		}
+	}
+
+	@media (max-width: 1024px) {
+		flex-direction:column;
+		align-items:center;
+	}
+
+	@media (max-width: 768px) {
+		flex-direction:column;
+		align-items:center;
+		nav {
+			margin-top:10px;
+			width:100%;
+			ul {
+				display:none;
+				flex-direction:column;
+				text-align:center;
+				width:100%;
+				a {
+					width:100%;
+				}
+				&.active {
+					display:flex;
+				}
+			}
+		}
+        .logo-text {
+            display: none;
+        }
+	}
+}
+.button {
+	display:inline-block;
+	padding:10px 30px;
+	background-color: var(--blue);
+	color: var(--base-100);
+	border-radius:10px;
+	transition: ease 0.3s all;
+	&:hover {
+		text-decoration:none;
+		background-color: var(--base-800);
+	}
+	&.white {
+		background-color: white;
+		color: var(--base-800);
+		&:hover {
+			background-color: var(--base-100);
+			color: var(--base);
+		}
+	}
+	&.black {
+		background-color: black;
+		color: white;
+		&:hover {
+			background-color: var(--base);
+			color: var(--base-100);
+		}
+	}
+}
+h1 {
+	font-size:70px;
+	line-height:1;
+	margin-bottom:10px;
+    text-align: center;
+	small {
+		display:block;
+        text-align: left;
+
+            font-size:0.5em;
+            color:var(--base);    
+	}
+	@media (max-width:1024px){
+		font-size:48px;
+	}
+}
+h2 {
+	font-size:64px;
+	line-height:1;
+	margin-bottom:10px;
+	text-align:center;
+	color: var(--base-800);
+	padding:30px;
+	small {
+		display:block;
+		font-weight:100;
+		font-size:0.5em;
+		color:var(--base);
+	}
+	@media (max-width:1024px){
+		font-size:48px;
+	}
+}
+h3 {
+	font-size:32px;
+	font-weight:600;
+	line-height:1;
+	margin-bottom:20px;
+	color: var(--base-800);
+}
+section {
+	max-width:1440px;
+	margin:auto;
+	gap:30px;
+	margin-top:30px;
+	margin-bottom:30px;
+
+
+	@media (max-width:1440px){
+		padding-left:30px;
+		padding-right:30px;
+	}
+}
+.about{
+    display: flex;
+    @media (max-width:1024px){
+		flex-direction:column;
+	}
+	h3{
+		text-align: center;
+	}
+    ul {
+		list-style: none; /* Remove default bullet points */
+		padding-left: 20px; /* Adjust spacing as needed */
+	  }
+	li::before {
+		content: "✓ "; /* Add the checkmark character */
+		color: green; /* Make the checkmark green */
+
+	  }  
+	.about-columns, .about-text {
+		display: flex;
+		flex-direction: column; /* Stack on mobile */
+		
+		@media(max-width:1024px){
+			flex-direction:column;
+		}
+		
+		.marquee {
+			margin: 20px;
+			height: 128px;
+			overflow: hidden;
+			position: relative;
+		}
+		
+		.marquee .track { /* Corrected selector: .marquee .track */
+			position: absolute;
+			white-space: nowrap;
+			will-change: transform;
+			animation: marquee 20s linear infinite;
+			display: inline-block;
+			gap: 10px;
+		}
+	  }
+
+	  .tech-stack{
+		margin-top: 20px;
+		ul {
+			list-style-type: none;
+			gap:10px;
+			margin-right:100px;
+			margin-bottom:20px;
+			li {
+				display:inline-block;
+				background-color: var(--blue-400);
+				padding:10px 20px;
+				border-radius:15px;
+				margin-bottom:10px;
+				@media(max-width:1024px){
+					display:inline-flex;
+					font-size:medium;
+				}
+			}
+		}
+		@media(max-width:1024px){
+			flex-direction:column;
+		}
+	  }
+	  .about-image img.profile-image {
+		width: 100%; /* Responsive image */
+		max-width: 300px; /* Limit image size */
+		height: auto;
+		border-radius: 20px; /* Optional rounded corners */
+		display: block;
+		margin: 0 auto 20px auto;
+
+	  }
+	  .contact-info {
+		background-color: var(--blue-100); /* Light background */
+		padding: 25px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+		text-align: left; /* Align text left */
+	  }
+	  
+	  .contact-info h3 {
+		font-size: 1.5em;
+		font-weight: 600;
+		margin-top: 0;
+		margin-bottom: 20px;
+    	border-bottom: 2px solid #ddd; /* Add a subtle underline */
+    	padding-bottom: 10px;
+	  }
+	  
+	  .contact-info p {
+		margin: 10px 0;
+		display: flex;
+		align-items: center;
+		font-size: 1.1em;
+		color: var(--base-400);
+	  }
+	  
+	  .contact-info i {
+		margin-right: 15px;
+		width: 25px; /* Fixed width for icons */
+		text-align: left;
+		color: var(--blue-800);
+		justify-content: center;
+
+	  }
+	  .contact-info a[href^="tel"] {
+		font-weight: 600; /* Bold phone number */
+	  }
+	  .contact-info a:hover {
+		color: var(--green-800);
+		text-decoration: underline;
+	  }
+	  .contact-info a {
+		color: var(--base-800);
+		text-decoration: none;
+		font-weight: 500;
+		transition: color 0.3s ease;
+	  }
+	  
+}
+
+@keyframes marquee {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+        transform: translateX(-5034px); /* Corrected translateX value */
+	}
+}
+
+.skills{
+	padding: 40px 20px;
+	background-color: var(--blue-100); /* Light background */
+	 flex-direction: column; /* Stack sections vertically */
+
+    @media (max-width:1024px){
+		flex-direction:column;
+	}
+	li::before {
+		content: "✓ "; /* Add the checkmark character */
+		color: green; /* Make the checkmark green */
+	
+	  }  
+	.container {
+
+		width: 100%;
+		margin: 0 auto;
+	  }
+	  .h2 {
+		text-align: center;
+		margin-bottom: 30px;
+		color: var(--base-800);
+	  }
+	  .skill-row {
+		display: flex;
+		flex-direction: column; /* Stack on mobile */
+		margin-bottom: 30px;
+	  }
+	  .skill-description, .skill-projects {
+		width: 100%; /* Full width on mobile */
+		padding: 20px;
+		box-sizing: border-box;
+	  }
+	  
+	  .skill-description {
+		background-color: #fff;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	  }
+	  
+	  .skill-projects {
+		background-color: var(--base-100);
+		border-radius: 8px;
+		@media (max-width:1024px){
+			display: none;		}
+	  }
+	  .skill-projects li{
+		list-style-type:none;
+	  }
+	  .skill-row h3 {
+		margin-top: 0;
+		margin-bottom: 15px;
+		color: var(--base-800);
+	  }
+}
+
+.certifications-awards {
+	flex-direction: column; /* Stack sections vertically */
+    padding: 40px 20px;
+    background-color: var(--blue-100); /* Light background */
+	
+	@media (max-width:1024px){
+
+	flex-direction:column;
+
+	}
+	li::before {
+	content: "✓ "; /* Add the checkmark character */
+	color: green; /* Make the checkmark green */
+
+  	}	  
+
+	.container {
+    margin: 0 auto;
+	width: 100%;
+	
+	}
+
+ 	.cert-award-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center; /* Center items horizontally */
+
+	}
+
+	.cert-award-item {
+		background-color: var(--base-100);
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: 20px;
+		margin: 10px;
+		
+		min-width: 250px; /* Ensure a minimum width for readability */
+		box-sizing: border-box; /* Include padding and border in element's total width and height */
+		@media (max-width:1024px){
+
+			flex-direction:column;
+			font-size:medium;
+		}
+		ul {
+			list-style: none; /* Remove default bullet points */
+		}
+	}
+}
+
+.entrepreneurial-experience {
+	width: 100%; /* Take up full width */
+	padding: 40px 20px;
+	background-color: var(--blue-100); /* Light background */
+	display: flex;
+	flex-direction: column; /* Stack sections vertically */
+  
+ 	 @media (max-width: 1024px) {
+	  flex-direction: column; /* Redundant, but ensures stacking on smaller screens */
+	}
+	.container {
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column; /* Stack on mobile */
+	}  
+	.experience-item {
+		background-color: var(--base-100);
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: 20px;
+		margin: 10px;
+		
+		min-width: 250px; /* Ensure a minimum width for readability */
+		box-sizing: border-box; /* Include padding and border in element's total width and height */
+
+		ul {
+			list-style: none; /* Remove default bullet points */
+		}
+	}
+
+} 
+  
+ /* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0.1rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.mobile-footer {
+    display: none; /* Hide on desktop by default */
+}
+
+/* Media query for mobile view (adjust breakpoint as needed) */
+@media (max-width: 768px) { /* Example breakpoint */
+    .desktop-footer {
+        display: none; /* Hide desktop footer on mobile */
+    }
+
+    .mobile-footer {
+        display: block; /* Show mobile footer on mobile */
+    }
+}
