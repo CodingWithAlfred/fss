@@ -24,9 +24,7 @@ jobs:
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-          # Cache pip's HTTP cache dir (not site-packages, since we have no deps)
-          cache: pip
+          python-version: "3.12"     
 
       # ── 3. Generate static site ────────────────────────────────────────────
       # No pip install needed — build.py uses stdlib only.
