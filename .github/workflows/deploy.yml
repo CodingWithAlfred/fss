@@ -38,7 +38,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm             # caches ~/.npm between runs
 
       # ── 5. Install Firebase CLI (pinned major, auto-patch updates) ──────────
       - name: Install Firebase CLI
