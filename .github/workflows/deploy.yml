@@ -48,11 +48,9 @@ jobs:
       # full JSON key of a least-privilege Google Service Account.
       # It is never printed, echoed, or stored in the filesystem beyond this step.
       - name: Deploy to Firebase Hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: |
-          firebase deploy \
-            --only hosting \
-            --project resume-a346a \
-            --non-interactive \
-            --token "$FIREBASE_TOKEN"
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:  
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: resume-a346a      
