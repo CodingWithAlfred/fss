@@ -1,0 +1,15 @@
+# Generated output — rebuilt by CI on every push
+public/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Firebase local state
+.firebase/
+firebase-debug.log
+
+# Node (Firebase CLI installed globally in CI, not locally committed)
+node_modules/

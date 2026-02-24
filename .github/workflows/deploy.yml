@@ -1,0 +1,59 @@
+name: Build & Deploy to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main
+
+# Least-privilege: only the permissions this workflow actually needs
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    name: Build → Deploy
+    runs-on: ubuntu-24.04        # latest stable LTS runner (2024)
+    timeout-minutes: 10          # safety cap — prevents runaway billing
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Set up Python ───────────────────────────────────────────────────
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          # Cache pip's HTTP cache dir (not site-packages, since we have no deps)
+          cache: pip
+
+      # ── 3. Generate static site ────────────────────────────────────────────
+      # No pip install needed — build.py uses stdlib only.
+      - name: Build static site
+        run: python build.py
+
+      # ── 4. Set up Node.js for Firebase CLI ─────────────────────────────────
+      - name: Set up Node.js 20 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm             # caches ~/.npm between runs
+
+      # ── 5. Install Firebase CLI (pinned major, auto-patch updates) ──────────
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools@13
+
+      # ── 6. Deploy to Firebase Hosting ──────────────────────────────────────
+      # FIREBASE_SERVICE_ACCOUNT is a GitHub Actions secret containing the
+      # full JSON key of a least-privilege Google Service Account.
+      # It is never printed, echoed, or stored in the filesystem beyond this step.
+      - name: Deploy to Firebase Hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          firebase deploy \
+            --only hosting \
+            --project resume-a346a \
+            --non-interactive \
+            --token "$FIREBASE_TOKEN"
