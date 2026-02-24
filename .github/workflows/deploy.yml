@@ -3,7 +3,7 @@ name: Build & Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - main
+      - master
 
 # Least-privilege: only the permissions this workflow actually needs
 permissions:
