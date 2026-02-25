@@ -1,12 +1,13 @@
 import os
 
 def build() -> None:
-    # Ensure the public directory exists
+    # Check if public exists and has files
     if os.path.exists("public"):
-        print(f"[build] ✓ Public folder detected with {len(os.listdir('public'))} files.")
+        file_count = len([f for f in os.listdir('public') if os.path.isfile(os.path.join('public', f))])
+        print(f"[build] ✓ Found {file_count} files in public folder.")
     else:
         os.makedirs("public", exist_ok=True)
-        print("[build] ! Warning: Public folder was missing and has been created.")
+        print("[build] ! Created missing public folder.")
 
 if __name__ == "__main__":
     build()
